@@ -2,31 +2,53 @@
 <html lang="en">
 
 <head>
-  <meta charset="utf-8">
-  <title>Movies/Anime</title>
-  <style type="text/css">
-    button,
-    div,
-    form,
-    input {
-      margin: 10px;
-    }
-  </style>
+    <meta charset="utf-8">
+    <title>Movies/Anime</title>
+    <style type="text/css">
+        button,
+        div,
+        form,
+        input {
+            margin: 10px;
+        }
+    </style>
 </head>
 
 <body>
 
-  <div class="container">
-    <h1>Search for Movies or Anime!</h1>
+    <div class="container">
+        <h1>Search for Movies, Anime or TV Shows!</h1>
 
-    <form id="movie-form">
-            <label for="movie-input">Add your favorite movie/anime to the list!</label>
+        <form id="movie-form">
+            <label for="movie-input">Add your favorite movie/anime/tvshow to the list!</label>
             <input type="text" id="movie-input">
             <br>
-      
+
             <!-- Button triggers new movie to be added -->
             <input id="add-movie" type="submit" value="Add!">
-          </form>
-</div>
+        </form>
+        <div id="buttons">
+            <button data-movie="The Lion King">
+                The Lion King
+            </button>
+            <button data-movie="Interstellar">
+                    Interstellar
+            </button>
+            <button data-movie="Attack On Titan">
+                    Attack on Titan
+            </button>
+            <button data-movie="Tokyo Ghoal">
+                    Tokyo Ghoal
+            </button>
+            <button data-movie="Parks and Recreation">
+                    Parks and Rec
+            </button>
+            <button data-movie="The Boys">
+                    The Boys
+            </button>
+
+            
+        </div>
 </body>
+
 </html>
