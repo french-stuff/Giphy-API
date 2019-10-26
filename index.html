@@ -2,54 +2,106 @@
 <html lang="en">
 
 <head>
-    <meta charset="utf-8">
-    <title>Movies/Anime/TvShows Gif</title>
-    <link rel="stylesheet" type="text/css" href="style.css">
-    <link href="https://fonts.googleapis.com/css?family=Dosis&display=swap" rel="stylesheet">
-    <style>
-        
-    </style>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Movies/Anime/TvShows Gif</title>
+        <link rel="stylesheet" type="text/css" href="style.css">
+        <link href="https://fonts.googleapis.com/css?family=Dosis&display=swap" rel="stylesheet">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+       
 </head>
 
 <body>
 
-    <div class="container">
-        <h1>Search for Movies, Anime or TV Shows gifs!</h1>
-        <h2>Pre loaded movies/anime/tvshows</h2>
-        <h5>(Click on any below and see what it does!)</h5>
+        <div class="container">
+                <h1>Search for Movies, Anime or TV Shows gifs!</h1>
+                <h2>Pre loaded movies/anime/tvshows</h2>
+                <h5>(Click on any below and see what it does!)</h5>
 
-        <div id="buttons">
-                <button data-movie="The Lion King">
-                    The Lion King
-                </button>
-                <button data-movie="Interstellar">
-                        Interstellar
-                </button>
-                <button data-movie="Attack On Titan">
-                        Attack on Titan
-                </button>
-                <button data-movie="Tokyo Ghoul">
-                        Tokyo Ghoul
-                </button>
-                <button data-movie="Parks and Recreation">
-                        Parks and Rec
-                </button>
-                <button data-movie="The Boys">
-                        The Boys
-                </button>
+                <div id="buttons">
+                        <button data-movie="The Lion King">
+                                The Lion King
+                        </button>
+                        <button data-movie="Interstellar">
+                                Interstellar
+                        </button>
+                        <button data-movie="Attack On Titan">
+                                Attack on Titan
+                        </button>
+                        <button data-movie="Tokyo Ghoul">
+                                Tokyo Ghoul
+                        </button>
+                        <button data-movie="Parks and Recreation">
+                                Parks and Rec
+                        </button>
+                        <button data-movie="The Boys">
+                                The Boys
+                        </button>
 
-        <form id="movie-form">
-            <label for="movie-input">Add your favorite movie/anime/tvshow to the list!</label>
-            <input type="text" id="movie-input">
-            
+                        <form id="movie-form">
+                                <label form="movie-input">Add your favorite movie/anime/tvshow to the list!</label>
+                                <input type="text" id="movie-input">
 
-            <!-- Button triggers new movie to be added -->
-            <input id="add-movie" type="submit" value="Add!">
-        </form>
-       
 
-            
-        </div>
-</body>
+                                <!-- Button triggers new movie to be added -->
+                                <input id="add-movie" type="submit" onlick="getData()">
+                        </form>
 
-</html>
+
+
+                </div>
+                <div id="gifs-appear-here">
+                </div>
+                
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+                <script type="text/javascript">
+                  
+                  $("button").on("click", function() {
+                
+                    var movie = $(this).attr("data-movie");
+              
+                    
+                    var queryURL = "https://api.giphy.com/v1/gifs/search?q=" +
+                      movie + "&api_key=BkaUZZWcFij6J7AoQj3WtPb1R2p9O6V9&limit=10";
+              
+                    
+                    $.ajax({
+                      url: queryURL,
+                      method: "GET"
+                    })
+                    
+                      .then(function(response) {
+                        console.log(queryURL);
+              
+                        console.log(response);
+                 
+                        var results = response.data;
+              
+             
+                        for (var i = 0; i < results.length; i++) {
+              
+                     
+                          var movieDiv = $("<div>");
+              
+                   
+                          var p = $("<p>").text("Rating: " + results[i].rating);
+              
+             
+                          var movieImage = $("<img>");
+                     
+                          movieImage.attr("src", results[i].images.fixed_height.url);
+              
+         
+                          movieDiv.append(p);
+                          movieDiv.append(movieImage);
+              
+                      
+                          $("#gifs-appear-here").prepend(movieDiv);
+                        }
+                      });
+                  });
+                </script>
+
+</body >
+
+</html >
